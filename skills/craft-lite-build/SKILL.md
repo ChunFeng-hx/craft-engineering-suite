@@ -11,6 +11,8 @@ Use for an explicit, authorized change or a confirmed task. If a material design
 
 Read the current Kanban task, relevant checklist, context, ADRs and findings. State the bounded outcome, non-goals, first vertical slice and completion check. For a tiny change, keep this in the conversation; do not create ceremony.
 
+For a cross-layer API change, trace one contract end to end before editing: handler/controller response shape, frontend service return type, transport error handling and the repository's API envelope convention. Keep the envelope at the layer that owns it; do not accidentally expose `ApiResponse` where this project expects an unwrapped `Promise<T>`. For persistence work, account for the DAO/repository boundary, model mapping, transaction or consistency behavior, migration file, migration execution path and rollback/compatibility impact. If the project uses a code-generation platform, check whether the touched file is generated and verify the platform registration or update path instead of editing generated output.
+
 ## Implement
 
 For behavior changes, use the smallest useful red-green-clean cycle:
@@ -25,6 +27,8 @@ Do not test private implementation details, internal call counts or tautological
 ## Verify and close
 
 Run focused tests and relevant type, lint, build, integration or migration checks. Inspect the diff against two contracts: requested behavior and project craft (rules, boundaries, compatibility, maintainability). Record passed, failed, blocked and not-run accurately. Update the canonical Kanban task after material progress; preserve reusable findings and decisions in their fixed owners. Move to `done/` only when every acceptance criterion and required check is satisfied.
+
+For a change spanning API, persistence or generated code, completion requires evidence for each touched layer: request/response contract, service/type wiring, DAO and persistence behavior, migration actually applied or explicitly blocked, and generator/platform registration when applicable. A compile-only result does not prove those integrations.
 
 ## Shared project frame
 
