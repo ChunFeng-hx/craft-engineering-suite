@@ -1,14 +1,19 @@
-# Craft suite validation
+# Craft Lite 验证记录
 
-Date: 2026-09-15 Asia/Shanghai
+## 已完成的检查
 
-- 18 new skill directories validated with the bundled `quick_validate.py` using an isolated Python environment with PyYAML.
-- Every new `SKILL.md` has valid frontmatter and a unique name.
-- Relative references to sibling Craft skills resolve.
-- `craft-project-setup` assets and `project-contract.md` exist.
-- Each skill has UI metadata.
-- Isolated forward test: existing AGENTS + GitHub issue tracker produced only `docs/agents/craft.md` and one managed AGENTS block; no parallel kanban queue or empty context/finding/task. Second run was idempotent.
-- Isolated read-only discovery test: no files were created.
-- Scenario review covered explicit small change with tracker, read-only production-log diagnosis without reproduction, and a required integration check blocked by environment. The suite was adjusted to keep task-owner semantics, forbid read-only harness creation, and report blocked/not-run accurately.
+- 六个 Skill 目录均通过随 Codex 提供的 `quick_validate.py`：前置元数据、命名和脚手架占位符有效。
+- 每个 Skill 都包含 `SKILL.md`；每个目录的 `agents/openai.yaml` 与名称一致。
+- 仓库只保留一个持久任务模型：`kanban/discussion → planning → executable → done`。
+- README、来源清单和许可证说明不包含本机绝对路径、凭据或旧版 18 Skill 清单。
+- 压缩包内只包含 Craft Lite 的六个 Skill 及说明文件。
 
-Limitations: no real remote issue mutation, release publication, signing, merge continuation, or production traffic was performed. Runtime behavior depends on each project's tools and authorization. Source drift should be rechecked before major updates.
+## 验证边界
+
+这些检查证明了目录结构、元数据和发布内容的一致性，不等于证明模型在所有项目中的行为都正确，也不是生产环境基准测试。
+
+本套件没有声称 GPT-6 不需要任何工程指导。保留下来的内容是强模型无法仅凭仓库代码稳定推断的项目协议：单一 Kanban 真源、固定知识职责、读写边界、依赖顺序的需求澄清、可复现的诊断闭环和证据优先的审查。
+
+## 未完成的验证
+
+尚未进行严格控制变量的“无 Skill、旧 18 Skill、Craft Lite”科学基准实验。实际采用时，应根据真实项目中的失败记录调整规则，而不是把本文件当作效果保证。
