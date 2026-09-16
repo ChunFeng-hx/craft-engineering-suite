@@ -14,6 +14,8 @@ Review two contracts separately:
 
 Trace each finding to an exact path/line or reproducible behavior. Say “不明确” when the source does not establish intent. Compare neighboring implementations before calling a convention defective. Do not edit, commit, merge or publish comments during review.
 
+For state-changing or retryable operations, check idempotency across processes and instances, not only a local mutex or in-memory flag. Identify the idempotency key, durable store, uniqueness constraint or atomic operation and the behavior after timeout, retry and crash. For auditable behavior, verify that audit records are durable, permissioned and queryable by the operators who need them; a log line alone is not a queryable audit trail. For schema or persistence changes, trace the migration from file to registration, execution, deployed schema and rollback/compatibility path. A migration file that is never wired into the runner is incomplete.
+
 Report actionable findings first using:
 
 ```text
