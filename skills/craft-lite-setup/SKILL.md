@@ -23,6 +23,8 @@ External trackers remain intake/evidence links. They never own a duplicate task 
 
 Create only missing files that contain useful content. Add one concise `## Craft Lite` pointer block to the actual loaded `AGENTS.md` or `CLAUDE.md`; if neither exists, ask which entrypoint to create. Do not create empty glossaries, ADRs, findings or tasks.
 
+For generated-code repositories, mark files containing the project's generator warning (for example `Easy生成，平台修改本地 update 会更新此文件`) as generated ownership. Do not hand-edit those files; locate the generator, schema or source template instead. Record the boundary in the project entrypoint or checklist. Treat migrations, generated models and platform registration as separate responsibilities: inspect existing commands and ownership before creating or moving any of them. Do not migrate user code, change repository layout, or introduce a Build wrapper unless the boundary is confirmed and authorized.
+
 ## Build wrapper
 
 Use `Build<ProjectName>` only when independent Git history or an external workflow boundary requires it and the user confirms. The same fixed memory and Kanban model applies in either layout. Never reparent a dirty checkout, copy credentials or create a second task system.
