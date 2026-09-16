@@ -11,6 +11,8 @@ Use when a first-glance fix is unreliable. For read-only requests, inspect exist
 
 Build or reuse one feedback loop that goes red on the actual symptom. Confirm it reproduces the user's problem, then minimize load-bearing inputs. If the environment prevents a red loop, continue useful source/log analysis and report the evidence gap as blocked or not-run; do not invent a confirmed cause.
 
+Use these result states precisely: `blocked` means an external prerequisite or environment boundary prevents the discriminating check; `not-run` means a relevant check was identified but intentionally could not be attempted in this run. Keep both separate from “passed” and “failed”, name the missing evidence, and state what would unblock or run it. Do not turn a missing reproduction into a confirmed root cause.
+
 Rank a small number of evidence-backed competing hypotheses. For each, state a prediction and run one discriminating probe. Control time, randomness, seeds, scheduling and environment at boundaries when relevant. Measure a performance baseline instead of broad logging.
 
 ## Fix and verify
